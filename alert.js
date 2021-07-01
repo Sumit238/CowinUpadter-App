@@ -6,7 +6,7 @@ const date = new Date();
 
 // database Connection
 const mongoose = require('mongoose').set('debug', true);
-const dbUrl = 'mongodb+srv://cowin_app:BKbuI2PZLUCj3RtT@cluster0.hquz1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const dbUrl = 'Paste DB url here';
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('connected to database')
