@@ -2,7 +2,7 @@ const express = require('express')
 const axios = require('axios');
 const nodemailer = require('nodemailer');
 const TeleBot = require('telebot');
-const bot = new TeleBot('1748449175:AAEKTJMipsZaK-j4YxjhU3Kb-61e8lK5yTk');
+const bot = new TeleBot('Paste Your TeleBot here');
 
 bot.on('text', (msg) => msg.reply.text(msg.text));
 bot.start();
