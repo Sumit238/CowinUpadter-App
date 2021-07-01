@@ -15,7 +15,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 // database connection 
 const mongoose = require('mongoose').set('debug', true);
-const dbUrl = 'mongodb+srv://cowin_app:BKbuI2PZLUCj3RtT@cluster0.hquz1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const dbUrl = 'paste Your URL Here';
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('connected to database')
