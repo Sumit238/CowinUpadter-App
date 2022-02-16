@@ -15,7 +15,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 // database connection 
 const mongoose = require('mongoose').set('debug', true);
-const dbUrl = 'paste Your URL Here';
+const dbUrl = 'mongodb://127.0.0.1:27017/alerts';
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('connected to database')
@@ -32,55 +32,30 @@ app.get('/', (req, res) => {
     res.render('front.ejs', { states: metaData.States })
 })
 app.post('/addAlert', async (req, res) => {
-    console.log(req.body)
+
     let alertSucess = false
     let filter = {
         state_id: req.body.state,
         district_id: req.body.district,
-        Age: req.body.age
+        Age: req.body.age,
+        vaccine:req.body.vaccine
     }
     let details = {
         name: req.body.userName,
         pHno: req.body.pHno,
         email: req.body.email
     }
-    await filterAndContact.find(filter)
-        .then((async res => {
-            console.log(res, res.length)
-            if (res.length > 0) {
-                await filterAndContact.updateOne(filter, {
-                    $addToSet: {
-                        contacts: [details]
-                    }
-                })
-                    .then((res) => {
-                        alertSucess = true
-                    })
-                    .catch(err => {
-                        console.err(err)
-                    })
-            }
-            else {
-                filter['contacts'] = [details]
-                await filterAndContact.insertMany([filter])
-                    .then((res => {
-                        alertSucess = true
-                    }))
-                    .catch(err => {
-                        console.log(err)
-                    })
-            }
-
-        }))
-        .catch(err => {
-            console.log(err)
-        })
-    if (alertSucess) {
-        res.render('alertAddSucess.ejs')
+    const isfilterExist =await filterAndContact.findOne(filter);
+    if(!isfilterExist){
+        const newFilter = new filterAndContact(filter);
+        newFilter.contacts.push(details);
+        await newFilter.save();
     }
-    else {
-        res.send('alertAddingFailed')
+    else{
+        isfilterExist.contacts.push(details);
+        await isfilterExist.save();
     }
+    res.render('alertAddSucess.ejs');
 })
 app.get('/removeAlert/:id', async (req, res) => {
     let id = req.params.id

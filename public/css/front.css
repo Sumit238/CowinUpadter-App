@@ -35,7 +35,7 @@ h1,h2,h3,h4,h5,h6,div,section,a,li,ul,ol,p,img,input{
 }
 .userName,.filters,.contacts{
     padding-bottom: 25px;
-    padding-top: 25px;
+    padding-top: 18px;
 }
 .btn{
     margin-bottom: 20px;
@@ -46,6 +46,24 @@ h1,h2,h3,h4,h5,h6,div,section,a,li,ul,ol,p,img,input{
     width: 50%;
     max-width: 400px;
 }
+
+.age-filter,.vaccine-filter{
+    padding-top: 12px;
+}
+.option{
+    font-size: 1em;
+}
+.radio_container>.row>.option>input[type="radio"] {
+    appearance: none;
+    display: none;
+}
+.btn{
+    margin: 0px;
+    padding: 2px;
+}
+.radio_container>.row>.option>label{
+    margin: auto;
+}
 @media screen and (max-width: 650px) {
     .alert-add-form{
         position:absolute;
@@ -53,7 +71,7 @@ h1,h2,h3,h4,h5,h6,div,section,a,li,ul,ol,p,img,input{
         width: 90%;
         max-width: 400px;
     }
+    .option{
+        font-size: 0.85rem;
+    }
   }
-.age-filter{
-    padding-top: 12px;
-}

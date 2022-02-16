@@ -17,6 +17,10 @@ const filtersSchema = new mongoose.Schema({
         type: Number,
         enum: [18, 45]
     },
+    vaccine: {
+        type: String,
+        enum: ["covishield", "covaxin","Any"]
+    },
     contacts: [
         {
             name: {
