@@ -35,6 +35,14 @@ const filtersSchema = new mongoose.Schema({
                 type: String,
                 required: true,
 
+            },
+            active:{
+                type: Boolean,
+                default: false
+            },
+            alertAge :{
+                type: Number,
+                required:true
             }
         }
     ]

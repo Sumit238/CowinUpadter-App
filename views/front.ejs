@@ -19,7 +19,20 @@
     <nav class="navbar navbar-expand-lg bg-color-nav d-flex justify-content-center">
       <a class="navbar-brand display-1" href="/">cowin updater</a>
     </nav>
-    <form class="alert-add-form border mt-2" action="/addAlert" method="post">
+    <div class="container row">
+    <div class="jumbotron  col-sm-12 col-md-6 mt-2">
+        <h1 class="display-4">No vaccine slots ?</h1>
+        <p class="lead">We will help you to book your slot. Just go and add alert and we will notify you whenever slot is available.</p>
+        <hr class="my-4">
+        <p>Note : - </p>
+        <ul class="ml-5">
+            <li>Link to delete alert will be sent after suceffully adding an alert.</li>
+            <li>If alert not delete manually it will be deleted after 30 days of creation.</li>
+            <li>you can cancel alert at any time with given link.</li>
+        </ul>
+        <a class="btn btn-primary btn-lg mt-3 add-alert-btn" href="#alertForm" role="button">Add alert</a>
+      </div>
+    <form class="alert-add-form border mt-2  col-sm-12 col-md-6" id="alertForm" action="/addAlert" method="post">
       <div class="col-12 userName">
         <label class="userName-label" for="userName">Enter your name</label>
         <input
@@ -30,7 +43,7 @@
           required
         />
       </div>
-      <div class="filters col-12 border-top">
+      <div class="filters col-12 col-md-12 border-top">
         <label class="filters-label" for="">Filters</label>
         <section class="row">
           <section class="col-6">
@@ -121,6 +134,7 @@
         </button>
       </div>
     </form>
+</div>
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

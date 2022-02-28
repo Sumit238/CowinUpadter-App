@@ -43,13 +43,16 @@ app.post('/addAlert', async (req, res) => {
     let details = {
         name: req.body.userName,
         pHno: req.body.pHno,
-        email: req.body.email
+        email: req.body.email,
+        active:false,
+        alertAge:1
     }
     const isfilterExist =await filterAndContact.findOne(filter);
     if(!isfilterExist){
         const newFilter = new filterAndContact(filter);
         newFilter.contacts.push(details);
         await newFilter.save();
+        
     }
     else{
         isfilterExist.contacts.push(details);
