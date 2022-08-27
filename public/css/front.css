@@ -4,7 +4,7 @@ html,body{
     margin: 0px;
     padding: 0px;
     border: 0px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif ;
     background-color: #ffffff !important;
     
 
@@ -15,7 +15,7 @@ h1,h2,h3,h4,h5,h6,div,section,a,li,ul,ol,p,img,input{
     border: 0px;
 }
 .bg-color-nav{
-    background-color: #d6ccb8;
+    background-color: #58544c;
 }
 .navbar-brand{
     font-size: 1.5em !important;
@@ -30,30 +30,52 @@ h1,h2,h3,h4,h5,h6,div,section,a,li,ul,ol,p,img,input{
 .navbar{
     width: 100% !important;
 }
+.container{
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
 .contacts-label,.filters-label,.userName-label,.submit{
     font-size: 1.3em;
 }
+.jumbotron{
+    background-color: transparent;
+}
 .userName,.filters,.contacts{
     padding-bottom: 25px;
-    padding-top: 25px;
+    padding-top: 18px;
 }
 .btn{
     margin-bottom: 20px;
 }
 .alert-add-form{
-    position:absolute;
-    left: 50%;
-    width: 50%;
-    max-width: 400px;
+    border-radius: 5px;
 }
-@media screen and (max-width: 650px) {
-    .alert-add-form{
-        position:absolute;
-        left: 5%;
-        width: 90%;
-        max-width: 400px;
-    }
-  }
-.age-filter{
+
+.age-filter,.vaccine-filter{
     padding-top: 12px;
 }
+.add-alert-btn{
+    display: none;
+}
+.option{
+    font-size: 1em;
+}
+.radio_container>.row>.option>input[type="radio"] {
+    appearance: none;
+    display: none;
+}
+.btn{
+    margin: 0px;
+    padding: 2px;
+}
+.radio_container>.row>.option>label{
+    margin: auto;
+}
+@media screen and (max-width: 650px) {
+    .option{
+        font-size: 0.85rem;
+    }
+    .add-alert-btn{
+        display: inline;
+    }
+  }

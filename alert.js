@@ -6,7 +6,11 @@ const date = new Date();
 
 // database Connection
 const mongoose = require('mongoose').set('debug', true);
+<<<<<<< HEAD
 const dbUrl = 'mongodb://localhost:27017';
+=======
+const dbUrl = 'mongodb://127.0.0.1:27017/alerts';
+>>>>>>> e64ce39ce66a63468f9978c0c20cc04b486bfc3b
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('connected to database')
@@ -37,6 +41,8 @@ class AlertRoutine {
     }
     checkAvailibility(district_id) {
         let centers = this.data.centers;
+        console.log(centers)
+        console.log('Hiiii')
         let found18 = false;
         let found45 = false;
         let contacts = undefined;
@@ -72,7 +78,7 @@ class AlertRoutine {
     makeCowinRequest() {
         let headers = { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36", }
         let currentDate = `${date.getDate() + 1}-${date.getUTCMonth() + 1}-${date.getFullYear()}`;
-
+        console.log(currentDate)
         for (let district_id = 1; district_id <= 737; district_id++) {
 
             let sessionby7days = `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict?district_id=${district_id}&date=${currentDate}`
@@ -81,6 +87,7 @@ class AlertRoutine {
             })
                 .then(response => {
                     this.data = response.data;
+                    console.log(this.data)
                     this.checkAvailibility(district_id)
                 })
                 .catch(error => {

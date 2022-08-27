@@ -1,121 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AddCowin Alert</title>
-    <link rel="stylesheet" href="/static/css/front.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-</head>
+    
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/static/css/front.css" />
+  </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg  bg-color-nav d-flex">
-        <a class="navbar-brand" href="/">cowin updater</a>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-color-nav d-flex justify-content-center">
+      <a class="navbar-brand display-1" href="/">cowin updater</a>
     </nav>
+    <div class="container row">
+    <div class="jumbotron  col-sm-12 col-md-6 mt-2">
+        <h1 class="display-4">No vaccine slots ?</h1>
+        <p class="lead">We will help you to book your slot. Just go and add alert and we will notify you whenever slot is available.</p>
+        <hr class="my-4">
+        <p>Note : - </p>
+        <ul class="ml-5">
+            <li>Link to delete alert will be sent after suceffully adding an alert.</li>
+            <li>If alert not delete manually it will be deleted after 30 days of creation.</li>
+            <li>you can cancel alert at any time with given link.</li>
+        </ul>
+        <a class="btn btn-primary btn-lg mt-3 add-alert-btn" href="#alertForm" role="button">Add alert</a>
+      </div>
+    <form class="alert-add-form border mt-2  col-sm-12 col-md-6" id="alertForm" action="/addAlert" method="post">
+      <div class="col-12 userName">
+        <label class="userName-label" for="userName">Enter your name</label>
+        <input
+          class="form-control"
+          placeholder="Jhon Doe"
+          type="text"
+          name="userName"
+          required
+        />
+      </div>
+      <div class="filters col-12 col-md-12 border-top">
+        <label class="filters-label" for="">Filters</label>
+        <section class="row">
+          <section class="col-6">
+            <label for="state">State / UT</label>
+            <select class="form-control" name="state" id="state" required>
+              <option hidden disabled selected value>(select an option)</option>
+              <% for( state of states ) { %>
+              <option value=<%=state.state_id%>
+                > <%= state.state_name %>
+              </option>
 
-    <form class="alert-add-form" action="/addAlert" method="post">
-        <div class="col-12 userName">
-            <label class="userName-label" for="userName">Enter your name</label>
-            <input class="form-control" placeholder="Jhon Doe" type="text" name="userName" required>
-        </div>
-        <div class="filters col-12">
-            <label class="filters-label" for="">Filters</label>
+              <% } %>
+            </select>
+          </section>
+          <section class="col-6">
+            <label class="district-label" for="district">District</label>
+            <select class="form-control" name="district" id="district" required>
+              <option hidden disabled selected value>(select an option)</option>
+            </select>
+          </section>
+        </section>
+        <section class="row age-filter">
+          <section class="col-12">
+            <label class="age-label" for="age">Age</label>
             <section class="row">
-                <section class="col-6">
-                    <label for="state">State / UT</label>
-                    <select class="form-control" name="state" id="state" required>
-                        <option hidden disabled selected value>(select an option)</option>
-                        <% for( state of states ) { %>
-                            <option value=<%=state.state_id %> ><%= state.state_name %>
-                            </option>
-
-                            <% } %>
-                    </select>
-                </section>
-                <section class="col-6">
-                    <label class="district-label" for="district">District</label>
-                    <select class="form-control" name="district" id="district" required>
-                        <option hidden disabled selected value>(select an option)</option>
-                    </select>
-                </section>
+              <label for="age" class="col-6"
+                ><input type="radio" name="age" id="age" value="18" required />
+                18 to 44 years</label
+              >
+              <label for="age" class="col-6"
+                ><input type="radio" name="age" id="age" value="45" required />
+                45 year above</label
+              >
             </section>
-            <section class="row age-filter">
-                <section class="col-12">
-                    <label class="age-label" for="age">Age</label>
-                    <section class="row">
-                        <label for="age" class="col-6"><input type="radio" name="age" id="age" value=18 required> 18 to
-                            44
-                            years</label>
-                        <label for="age" class="col-6"><input type="radio" name="age" id="age" value=45 required> 45
-                            year
-                            above</label>
-                    </section>
+          </section>
+        </section>
+        <section class="row vaccine-filter">
+            <section class="col-12 radio_container" >
+                <label class="age-label" for="age">Select Vaccine :</label>
+              <section class=" row col-12 btn-group col-12" role="group" aria-label="Basic example">
+                  <section class="option col-4 btn btn-outline-secondary">
+                      covaxin
+                    <input type="radio" name="vaccine" id="vaccine" value="covaxin" required />
+
+                  </section>
+                <section class="option col-4 btn btn-outline-secondary">
+                    covishield
+                    <input type="radio" name="vaccine" id="vaccine" value="covishield" required />
                 </section>
+                <section class="option col-4 btn btn-outline-secondary">
+                    Any
+                    <input type="radio" name="vaccine" id="vaccine" value="Any" required />
+                </section>
+              </section>
             </section>
+          </section>
+      </div>
 
-        </div>
-
-
-        <div class="contacts col-12">
-            <label class="contacts-label">Contact to send Alert</label>
-            <br>
-            <section class="row">
-                <section class="col-6">
-                    <label for="pHno">mobile number</label>
-                    <input class="form-control" type="number" name="pHno" id="pHno" required>
-                </section>
-                <section class="col-6">
-                    <label for="email">Email</label>
-                    <input class="form-control" type="email" name="email" id="email" required>
-                </section>
-            </section>
-        </div>
-        <div class="col-12">
-            <button class="btn font-weight-bolder col-12 btn-dark" type="submit">Add Alert</button>
-        </div>
-
-
+      <div class="contacts col-12 border-top">
+        <label class="contacts-label">Contact Details</label>
+        <br />
+        <section class="row">
+          <section class="col-6">
+            <label for="pHno">Mobile number</label>
+            <input
+              class="form-control"
+              type="number"
+              name="pHno"
+              id="pHno"
+              required
+            />
+          </section>
+          <section class="col-6">
+            <label for="email">Email</label>
+            <input
+              class="form-control"
+              type="email"
+              name="email"
+              id="email"
+              required
+            />
+          </section>
+        </section>
+      </div>
+      <div class="col-12 pb-3">
+        <button class="btn font-weight-bolder col-12 btn-dark" type="submit">
+          Add Alert
+        </button>
+      </div>
     </form>
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/static/js/front.js"></script>
-</body>
-
+  </body>
 </html>
