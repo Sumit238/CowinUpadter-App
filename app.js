@@ -15,7 +15,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 // database connection 
 const mongoose = require('mongoose').set('debug', true);
-const dbUrl = 'paste Your URL Here';
+const dbUrl = 'mongodb://localhost:27017/';
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log('connected to database')
